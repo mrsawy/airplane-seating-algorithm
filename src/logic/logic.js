@@ -1,26 +1,26 @@
-// const testCase1 = [
-//   [3, 2],
-//   [4, 3],
-// ];
+const AirPlaneSeating = (seets, waitingPeaple=0) => {
 
-const AirPlaneSeating = (testCase1, wpI) => {
+
+
   let errors = [];
 
-  if (testCase1.length < 1) {
-    errors.push(`you must enter one parent array`);
-    return { result: null, errors: errors };
+  if (seets.length < 1) {
+    errors.push(`you must enter one parent array`)
+    return { result: null,  errors:errors };
   }
-  if (+wpI < 1 || !!!wpI) {
-    errors.push(`you must enter at least one passenger`);
+  if (waitingPeaple < 1) {
+    errors.push(`you must enter at least one passenger`)
 
     return { result: null, error: errors };
   }
 
-  let wp = +wpI + 1;
+  let wp = waitingPeaple + 1;
 
-  /// a function to define
 
-  const longest = +testCase1.reduce((acc, cur) => {
+
+  /// a function to define 
+
+  const longest = +seets.reduce((acc, cur) => {
     if (+cur[1] > +acc[1]) {
       return cur;
     } else {
@@ -28,11 +28,13 @@ const AirPlaneSeating = (testCase1, wpI) => {
     }
   })[1];
 
-  let structuredSeetsMatrix = testCase1.map((element, index, array) => {
+  let structuredSeetsMatrix = seets.map((element, index, array) => {
     //construct the over all shape of seets which will be a custom matrix
-    if (typeof +element[1] !== `number` || typeof +element[0] !== `number`) {
-      errors.push(`you must enter a valid number`);
+    if(typeof +element[1] !== `number` ||typeof +element[0] !== `number`){
+      errors.push(`you must enter a valid number`)
     }
+
+
 
     const enhancedEmpty = new Array(+element[1]).fill(
       Array(+element[0]).fill(1)
@@ -82,15 +84,15 @@ const AirPlaneSeating = (testCase1, wpI) => {
 
   // adding waiting  passengers to their seets (giving its seet its number)
 
-  let sp = 0;
+  let sittingPeaple = 0;
 
   let finalOutput = newStructured
     .map((element) => {
       return element.map((e, i, arr) => {
         if (e === `a`) {
           wp--;
-          sp++;
-          return wp > 0 ? sp : e;
+          sittingPeaple++;
+          return wp > 0 ? sittingPeaple : e;
         } else {
           return e;
         }
@@ -100,8 +102,8 @@ const AirPlaneSeating = (testCase1, wpI) => {
       return element.map((e, i, arr) => {
         if (e === `w`) {
           wp--;
-          sp++;
-          return wp > 0 ? sp : e;
+          sittingPeaple++;
+          return wp > 0 ? sittingPeaple : e;
         } else {
           return e;
         }
@@ -111,8 +113,8 @@ const AirPlaneSeating = (testCase1, wpI) => {
       return element.map((e, i, arr) => {
         if (e === `c`) {
           wp--;
-          sp++;
-          return wp > 0 ? sp : e;
+          sittingPeaple++;
+          return wp > 0 ? sittingPeaple : e;
         } else {
           return e;
         }
@@ -124,6 +126,7 @@ const AirPlaneSeating = (testCase1, wpI) => {
   //returning the final output to its original structure
   // after adding the right number to every seet
 
+
   const editedFinal = finalOutput.map((element) => {
     return element
       .toString()
@@ -132,7 +135,7 @@ const AirPlaneSeating = (testCase1, wpI) => {
       .filter((e) => e.length !== 0);
   });
 
-  let finalfinal = Array(testCase1.length).fill([]);
+  let finalfinal = Array(seets.length).fill([]);
 
   //////////////////////////////////
   editedFinal.forEach((ele, index) => {
@@ -150,17 +153,10 @@ const AirPlaneSeating = (testCase1, wpI) => {
 };
 
 
-
-// console.log(
-//   AirPlaneSeating(
-//     [
-//       ["3", "2"],
-//       [4, 3],
-//       [2, 3],
-//       [3, 4]
-//     ],
-//     30
-//   )
-// );
-
+//////////////////////////
+//////////////////////////
+//////////////////////////
+//////////////////////////
+//////////////////////////
+//////////////////////////
 export default AirPlaneSeating;
